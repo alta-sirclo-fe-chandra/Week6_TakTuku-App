@@ -5,6 +5,7 @@ import ImgModel from "../assets/images/Photo Login.png";
 import ImgLogo from "../assets/images/logo.svg";
 
 const Login = () => {
+	document.title = "TakTuku - Login ";
 	return (
 		<div className="login">
 			<div className="container mt-5">
