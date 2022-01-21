@@ -4,6 +4,10 @@ import { BsCardList, BsBasket3 } from "react-icons/bs";
 import { FaMapMarkerAlt, FaRegMoneyBillAlt, FaRegUser } from "react-icons/fa";
 
 const Index = () => {
+  const handleLoggetOut = () => {
+    localStorage.removeItem("token");
+  };
+
   return (
     <div>
       <div id="banner" className="container d-flex justify-content-center my-4">
@@ -51,7 +55,11 @@ const Index = () => {
               <a href="/" className="list-group-item list-group-item-action">
                 <FaMapMarkerAlt className="mb-1 me-2" /> Address
               </a>
-              <a href="/" className="list-group-item list-group-item-action">
+              <a
+                href="/"
+                className="list-group-item list-group-item-action"
+                onClick={handleLoggetOut}
+              >
                 <MdLogout className="mb-1 me-2" />
                 Log Out
               </a>

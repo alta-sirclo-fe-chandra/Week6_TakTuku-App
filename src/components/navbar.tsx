@@ -1,11 +1,12 @@
-import { useState } from "react";
 import { IoMdBasket } from "react-icons/io";
 import { FaUserAlt } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/images/logo.svg";
+import { useSelector } from "react-redux";
+import { RootState } from "../stores/reducers/reducer";
 
 const Navbar = () => {
-  const [isLoggedIn] = useState(false);
+  const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
