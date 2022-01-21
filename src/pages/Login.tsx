@@ -1,5 +1,5 @@
 import React from "react";
-import TextInput from "../components/TextInput";
+// import TextInput from "../components/TextInput";
 import { Form } from "react-bootstrap";
 import ImgModel from "../assets/images/Photo Login.png";
 import ImgLogo from "../assets/images/logo.svg";
@@ -9,16 +9,16 @@ const Login = () => {
 	return (
 		<div className="login">
 			<div className="container mt-5">
-				<div className="row  align-items-center">
-					<div className="col-12 col-md-6 lg-6 d-none d-sm-block text-center">
+				<div className="row login-row d-flex align-items-center pt-5 pb-4">
+					<div className="col-12 col-md-6 lg-6 d-none d-sm-block text-center ">
 						<img className="imgModel" src={ImgModel} alt="" />
 					</div>
 					<div className="col-12 col-md-6 lg-6">
 						<div className="row d-flex justify-content-center">
 							<div className="col-10 col-md-8  col-lg-6">
-								<div className="logo text-center d-md-none">
+								<div className="logo text-center">
 									<a href="">
-										<img src={ImgLogo} className="w-30 mb-4 mb-md-none" alt="" />
+										<img src={ImgLogo} className="mb-4 mb-md-none" alt="" />
 									</a>
 								</div>
 								<Form>

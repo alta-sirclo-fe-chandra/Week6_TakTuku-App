@@ -6,6 +6,10 @@
 	font-weight: 400;
 	font-size: 16px;
 
+	.logo img {
+		width: 20%;
+	}
+
 	input.form-control {
 		background-color: #f3f3f3;
 		border: 1px solid #ffffff;
@@ -42,12 +46,23 @@
 	}
 
 	@media (max-width: 767px) {
+		.login-row {
+			padding-top: 0 !important;
+		}
 		.imgModel {
 			display: none;
+		}
+
+		.logo img {
+			width: 30%;
 		}
 	}
 
 	@media (min-width: 768px) and (max-width: 1199.98px) {
+		.login-row {
+			padding-top: 20px !important;
+		}
+
 		.imgModel {
 			width: 65%;
 		}

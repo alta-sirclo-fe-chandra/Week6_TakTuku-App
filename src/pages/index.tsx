@@ -1,7 +1,6 @@
 import React from "react";
 
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-import ImgBanner from "../assets/images/banner.png";
 import ImgProd1 from "../assets/images/pic1.png";
 
 const Home = () => {
@@ -22,27 +21,22 @@ const Home = () => {
 					<ul className="navbar-nav d-flex flex-row justify-content-center">
 						<li className="nav-item mx-4">
 							<a className="nav-link active" aria-current="page" href="#">
-								Book
+								All
 							</a>
 						</li>
 						<li className="nav-item mx-4">
 							<a className="nav-link" href="#">
-								Computer
+								Women
 							</a>
 						</li>
 						<li className="nav-item mx-4">
 							<a className="nav-link" href="#">
-								Kitchen
+								Men
 							</a>
 						</li>
 						<li className="nav-item mx-4">
 							<a className="nav-link" href="#">
-								Gadget
-							</a>
-						</li>
-						<li className="nav-item mx-4">
-							<a className="nav-link" href="#">
-								Style
+								Kids
 							</a>
 						</li>
 					</ul>
