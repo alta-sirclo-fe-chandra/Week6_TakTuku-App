@@ -1,19 +1,43 @@
 import BootstrapTable from "react-bootstrap-table-next";
 import { FaUserAlt } from "react-icons/fa";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Dashboard = () => {
-  const Navigate = useNavigate();
-
+  const ThousandSeparator = (amount: number) => {
+    if (
+      amount !== undefined ||
+      amount !== 0 ||
+      amount !== "0" ||
+      amount !== null
+    ) {
+      return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    } else {
+      return amount;
+    }
+  };
+  const PriceCell = (cell: any) => {
+    return <p className="m-0">Rp. {ThousandSeparator(cell)}</p>;
+  };
+  const IdCell = (cell: any) => {
+    return (
+      <NavLink
+        className="text-decoration-none text-dark"
+        to={`/account/transaction/${cell}`}
+      >
+        {cell}
+      </NavLink>
+    );
+  };
   const products = [
-    { id: 1, date: "1 Feb 2022", status: "completed", price: 101 },
-    { id: 2, date: "2 Feb 2022", status: "completed", price: 102 },
-    { id: 3, date: "3 Feb 2022", status: "completed", price: 103 },
+    { id: 1, date: "1 Feb 2022", status: "completed", price: 101000 },
+    { id: 2, date: "2 Feb 2022", status: "completed", price: 102000 },
+    { id: 3, date: "3 Feb 2022", status: "completed", price: 103000 },
   ];
   const columns = [
     {
       dataField: "id",
       text: "#ID",
+      formatter: IdCell,
     },
     {
       dataField: "date",
@@ -28,14 +52,9 @@ const Dashboard = () => {
     {
       dataField: "price",
       text: "TOTAL",
+      formatter: PriceCell,
     },
   ];
-
-  const rowEvents = {
-    onClick: (e: any, row: any, rowIndex: any) => {
-      Navigate(`/account/transaction/${row.id}`);
-    },
-  };
 
   return (
     <div className="container-fluid">
@@ -92,8 +111,6 @@ const Dashboard = () => {
               keyField="id"
               data={products}
               columns={columns}
-              rowEvents={rowEvents}
-              rowStyle={{ cursor: "pointer" }}
             />
             <div className="p-4 text-end">
               <NavLink
