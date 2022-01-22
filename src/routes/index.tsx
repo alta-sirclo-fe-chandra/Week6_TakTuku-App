@@ -8,6 +8,8 @@ import Detail from "../pages/account/transaction/detail";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ProductDetail from "../pages/ProductDetail";
+import DetailAccount from "../pages/account/detail";
+import Address from "../pages/account/address";
 
 const Index = () => {
 	return (
@@ -19,8 +21,10 @@ const Index = () => {
 					<Route path="account" element={<Account />}>
 						<Route index element={<Navigate to="dashboard" />} />
 						<Route path="dashboard" element={<Dashboard />} />
+						<Route path="userid" element={<DetailAccount />} />
 						<Route path="transaction" element={<Transaction />} />
 						<Route path="transaction/:id" element={<Detail />} />
+						<Route path="address" element={<Address />} />
 					</Route>
 				</Route>
 				<Route path="/login" element={<Login />} />
