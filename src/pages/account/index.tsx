@@ -2,10 +2,15 @@ import { NavLink, Outlet } from "react-router-dom";
 import { MdDashboard, MdLogout } from "react-icons/md";
 import { BsCardList, BsBasket3 } from "react-icons/bs";
 import { FaMapMarkerAlt, FaRegMoneyBillAlt, FaRegUser } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { reduxAction } from "../../stores/actions/action";
 
 const Index = () => {
+  const dispatch = useDispatch();
+
   const handleLoggetOut = () => {
     localStorage.removeItem("token");
+    dispatch(reduxAction("isLoggedIn", false));
   };
 
   return (
@@ -55,14 +60,14 @@ const Index = () => {
               <a href="/" className="list-group-item list-group-item-action">
                 <FaMapMarkerAlt className="mb-1 me-2" /> Address
               </a>
-              <a
-                href="/"
+              <NavLink
+                to="/"
                 className="list-group-item list-group-item-action"
                 onClick={handleLoggetOut}
               >
                 <MdLogout className="mb-1 me-2" />
                 Log Out
-              </a>
+              </NavLink>
             </div>
           </div>
           <div className="col-9">

@@ -1,39 +1,112 @@
 import { TextInput } from "../components/TextInput";
 import Logo from "../assets/images/logo.svg";
+import { NavLink, useNavigate } from "react-router-dom";
+import { ChangeEvent, FormEvent, useState } from "react";
+import axios from "axios";
+
+type credential = {
+  name: string;
+  email: string;
+  password: string;
+  birth_date: string;
+  gender: string;
+  phone_number: Number;
+  address: string;
+};
 
 const Register = () => {
   document.title = "TakTuku - Register ";
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [birth, setBirth] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [gender, setGender] = useState("");
+  const Navigate = useNavigate();
+
+  const handleSubmit = async (e: FormEvent<HTMLElement>) => {
+    e.preventDefault();
+    await registerUser({
+      name: name,
+      email: email,
+      password: password,
+      birth_date: birth,
+      gender: gender,
+      phone_number: Number(phone),
+      address: address,
+    });
+  };
+
+  const registerUser = async (credential: credential) => {
+    await axios
+      .post("http://108.136.245.45:8080/users", credential)
+      .then((res) => {
+        console.log(res);
+        Navigate("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setGender(e.target.value);
+  };
+
   return (
     <div className="register">
       <div className="container mt-3 mb-5">
         <div className="row justify-content-center">
           <div className="col-11 col-md-6 col-lg-4">
             <div className="logo text-center">
-              <a href="/">
+              <NavLink to="/">
                 <img src={Logo} className="mb-4" alt="" />
-              </a>
+              </NavLink>
               <h4 className="register">Daftar Sekarang</h4>
             </div>
-            <form className="mt-4" action="#">
+            <form className="mt-4" onSubmit={handleSubmit}>
               <TextInput
                 label="Full Name"
                 type="text"
-                onChange={(e: any) => console.log(e.target.value)}
-              />
-              <TextInput
-                label="Username"
-                type="text"
-                onChange={(e: any) => console.log(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setName(e.target.value)
+                }
               />
               <TextInput
                 label="Email Address"
                 type="email"
-                onChange={(e: any) => console.log(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setEmail(e.target.value)
+                }
               />
               <TextInput
                 label="Password"
                 type="password"
-                onChange={(e: any) => console.log(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setPassword(e.target.value)
+                }
+              />
+              <TextInput
+                label="Birth Date"
+                type="text"
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setBirth(e.target.value)
+                }
+              />
+              <TextInput
+                label="Phone Number"
+                type="text"
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setPhone(e.target.value)
+                }
+              />
+              <TextInput
+                label="Address"
+                type="text"
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setAddress(e.target.value)
+                }
               />
               <div className="form-group mt-2">
                 <p>
@@ -46,7 +119,9 @@ const Register = () => {
                     type="radio"
                     name="inlineRadioOptions"
                     id="inlineRadio1"
-                    value="option1"
+                    value="male"
+                    checked={gender === "male"}
+                    onChange={handleChange}
                   />
                   <label className="form-check-label">Male</label>
                 </div>
@@ -56,7 +131,9 @@ const Register = () => {
                     type="radio"
                     name="inlineRadioOptions"
                     id="inlineRadio2"
-                    value="option2"
+                    value="female"
+                    checked={gender === "female"}
+                    onChange={handleChange}
                   />
                   <label className="form-check-label">Female</label>
                 </div>
