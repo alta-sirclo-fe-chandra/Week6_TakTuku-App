@@ -1,4 +1,4 @@
-import { TextInput } from "../components/TextInput";
+import { TextInput } from "../components/textInput";
 import Logo from "../assets/images/logo.svg";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ChangeEvent, FormEvent, useState } from "react";
@@ -139,9 +139,12 @@ const Register = () => {
                 </div>
               </div>
               <div className="col d-grid gap-2 mt-4">
-                <button className="btn btn-sign-in text-white">
+                <button type="submit" className="btn btn-sign-in text-white">
                   Sign Up Now
                 </button>
+                <NavLink to="/login" className="btn btn-light">
+                  Sign In
+                </NavLink>
               </div>
             </form>
           </div>

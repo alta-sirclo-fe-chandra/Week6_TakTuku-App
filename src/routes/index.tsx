@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import App from "../App";
+import ScrollToTop from "../components/scrollToTop";
 import Home from "../pages";
 import Account from "../pages/account";
 import Dashboard from "../pages/account/dashboard";
@@ -27,25 +28,27 @@ const Index = () => {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<Home />} />
-          <Route path="account" element={<Account />}>
-            <Route index element={<Navigate to="dashboard" />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="transaction" element={<Transaction />} />
-            <Route path="transaction/:id" element={<Detail />} />
+      <ScrollToTop>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route index element={<Home />} />
+            <Route path="account" element={<Account />}>
+              <Route index element={<Navigate to="dashboard" />} />
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="transaction" element={<Transaction />} />
+              <Route path="transaction/:id" element={<Detail />} />
+            </Route>
           </Route>
-        </Route>
-        <Route
-          path="/login"
-          element={isLoggedIn ? <Navigate to="/" /> : <Login />}
-        />
-        <Route
-          path="/register"
-          element={isLoggedIn ? <Navigate to="/" /> : <Register />}
-        />
-      </Routes>
+          <Route
+            path="/login"
+            element={isLoggedIn ? <Navigate to="/" /> : <Login />}
+          />
+          <Route
+            path="/register"
+            element={isLoggedIn ? <Navigate to="/" /> : <Register />}
+          />
+        </Routes>
+      </ScrollToTop>
     </BrowserRouter>
   );
 };

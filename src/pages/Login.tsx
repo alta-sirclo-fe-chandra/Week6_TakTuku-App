@@ -109,9 +109,9 @@ const Login = () => {
                   </div>
                 </Form>
                 <div className="direct-register d-grid gap-2 mt-3">
-                  <a href="/" className="btn btn-light">
+                  <NavLink to="/register" className="btn btn-light">
                     Sign Up
-                  </a>
+                  </NavLink>
                 </div>
               </div>
             </div>
