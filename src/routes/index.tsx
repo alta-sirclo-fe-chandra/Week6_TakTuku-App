@@ -13,6 +13,7 @@ import Address from "../pages/account/address";
 import Product from "../pages/account/product";
 import ProductUpdate from "../pages/account/product/update";
 import CreateProduct from "../pages/account/product/create";
+import Cart from "../pages/account/cart";
 
 const Index = () => {
 	return (
@@ -31,6 +32,7 @@ const Index = () => {
 						<Route path="product" element={<Product />} />
 						<Route path="product/create" element={<CreateProduct />} />
 						<Route path="product/update" element={<ProductUpdate />} />
+						<Route path="cart" element={<Cart />} />
 					</Route>
 				</Route>
 				<Route path="/login" element={<Login />} />
