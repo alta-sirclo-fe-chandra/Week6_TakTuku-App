@@ -4,7 +4,7 @@ type register = {
 	label: string;
 	type: any;
 	onChange: any;
-	placeholder?: string;
+	placeholder?: any;
 	value?: string;
 };
 

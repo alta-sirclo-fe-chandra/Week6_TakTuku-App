@@ -36,9 +36,12 @@ const Index = () => {
 							<a href="/" className="list-group-item list-group-item-action">
 								<BsBasket3 className="mb-1 me-2" /> Shopping Cart
 							</a>
-							<a href="/" className="list-group-item list-group-item-action">
+							<NavLink
+								to="/account/product/"
+								className="list-group-item list-group-item-action"
+							>
 								<BsCardList className="mb-1 me-2" /> My Product
-							</a>
+							</NavLink>
 							<NavLink
 								to="/account/transaction"
 								className="list-group-item list-group-item-action"
