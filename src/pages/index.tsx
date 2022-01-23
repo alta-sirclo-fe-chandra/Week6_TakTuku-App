@@ -17,43 +17,65 @@ const Home = () => {
 
   useEffect(() => {
     fetchData();
-    setProduct([
-      {
-        id: 1,
-        name: "Vas bunga",
-        price: 20000,
-        quantity: 1,
-        id_category: 1,
-      },
-      {
-        id: 2,
-        name: "Vas bunga",
-        price: 20000,
-        quantity: 1,
-        id_category: 1,
-      },
-      {
-        id: 3,
-        name: "Vas bunga",
-        price: 20000,
-        quantity: 1,
-        id_category: 2,
-      },
-      {
-        id: 4,
-        name: "Vas bunga",
-        price: 20000,
-        quantity: 1,
-        id_category: 2,
-      },
-    ]);
   }, []);
 
   const fetchData = async () => {
     await axios
-      .get("http://108.136.245.45:8080/products")
+      .get("/products")
       .then((res) => {
         const { data } = res;
+        setProduct(data);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const fetchWomen = async () => {
+    await axios
+      .get("/products")
+      .then((res) => {
+        const { data } = res;
+        const searchRegex = new RegExp(/[1]/g);
+        const filterRows = data.filter(function (el: any) {
+          return searchRegex.test(el.id_category);
+        });
+        setProduct(filterRows);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const fetchMen = async () => {
+    await axios
+      .get("/products")
+      .then((res) => {
+        const { data } = res;
+        const searchRegex = new RegExp(/[2]/g);
+        const filterRows = data.filter(function (el: any) {
+          return searchRegex.test(el.id_category);
+        });
+        setProduct(filterRows);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const fetchKid = async () => {
+    await axios
+      .get("/products")
+      .then((res) => {
+        const { data } = res;
+        const searchRegex = new RegExp(/[3]/g);
+        const filterRows = data.filter(function (el: any) {
+          return searchRegex.test(el.id_category);
+        });
+        setProduct(filterRows);
         console.log(data);
       })
       .catch((err) => {
@@ -88,24 +110,24 @@ const Home = () => {
         <div className="row category mt-5">
           <ul className="navbar-nav d-flex flex-row justify-content-center">
             <li className="nav-item mx-4">
-              <a className="nav-link active" aria-current="page" href="/">
+              <button className="btn" onClick={fetchData}>
                 All
-              </a>
+              </button>
             </li>
             <li className="nav-item mx-4">
-              <a className="nav-link" href="/">
+              <button className="btn" onClick={fetchWomen}>
                 Women
-              </a>
+              </button>
             </li>
             <li className="nav-item mx-4">
-              <a className="nav-link" href="/">
+              <button className="btn" onClick={fetchMen}>
                 Men
-              </a>
+              </button>
             </li>
             <li className="nav-item mx-4">
-              <a className="nav-link" href="/">
+              <button className="btn" onClick={fetchKid}>
                 Kids
-              </a>
+              </button>
             </li>
           </ul>
         </div>

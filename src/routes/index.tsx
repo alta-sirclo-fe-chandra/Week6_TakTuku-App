@@ -9,8 +9,8 @@ import Account from "../pages/account";
 import Dashboard from "../pages/account/dashboard";
 import Transaction from "../pages/account/transaction";
 import Detail from "../pages/account/transaction/detail";
-import Login from "../pages/login";
-import Register from "../pages/register";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 import { reduxAction } from "../stores/actions/action";
 import { RootState } from "../stores/reducers/reducer";
 

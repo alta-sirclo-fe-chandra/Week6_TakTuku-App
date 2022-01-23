@@ -29,7 +29,7 @@ const Login = () => {
 
   const LoginUser = async (credential: credential) => {
     await axios
-      .post("http://108.136.245.45:8080/login", credential)
+      .post("/login", credential)
       .then((res) => {
         const { data } = res;
         localStorage.setItem("token", JSON.stringify(data.Data));

@@ -1,8 +1,12 @@
-import { TextInput } from "../components/textInput";
 import Logo from "../assets/images/logo.svg";
 import { NavLink, useNavigate } from "react-router-dom";
 import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
+import { TextInput } from "../components/TextInput";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import moment from "moment";
+import Swal from "sweetalert2";
 
 type credential = {
   name: string;
@@ -10,7 +14,7 @@ type credential = {
   password: string;
   birth_date: string;
   gender: string;
-  phone_number: Number;
+  phone_number: string;
   address: string;
 };
 
@@ -19,7 +23,7 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [birth, setBirth] = useState("");
+  const [birth, setBirth] = useState(new Date());
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [gender, setGender] = useState("");
@@ -31,19 +35,24 @@ const Register = () => {
       name: name,
       email: email,
       password: password,
-      birth_date: birth,
+      birth_date: moment(birth).format("YYYY-MM-DD"),
       gender: gender,
-      phone_number: Number(phone),
+      phone_number: phone,
       address: address,
     });
   };
 
   const registerUser = async (credential: credential) => {
     await axios
-      .post("http://108.136.245.45:8080/users", credential)
+      .post("/users", credential)
       .then((res) => {
-        console.log(res);
-        Navigate("/login");
+        Swal.fire("Success!", "Your Account has been created.", "success").then(
+          (res) => {
+            if (res.isConfirmed) {
+              Navigate("/login");
+            }
+          }
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -87,13 +96,18 @@ const Register = () => {
                   setPassword(e.target.value)
                 }
               />
-              <TextInput
-                label="Birth Date"
-                type="text"
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setBirth(e.target.value)
-                }
-              />
+              <div className="form-group mt-3">
+                <p>
+                  Birth Date
+                  <span className="input text-danger">*</span>
+                </p>
+                <DatePicker
+                  selected={birth}
+                  onChange={(date: Date) => setBirth(date)}
+                  dateFormat={"yyyy/MM/dd"}
+                  showYearDropdown
+                />
+              </div>
               <TextInput
                 label="Phone Number"
                 type="text"

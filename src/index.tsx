@@ -9,6 +9,10 @@ import Routes from "./routes";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store } from "./stores";
+import axios from "axios";
+
+// initialize axios
+axios.defaults.baseURL = "http://108.136.165.146:8080";
 
 ReactDOM.render(
   <React.StrictMode>
