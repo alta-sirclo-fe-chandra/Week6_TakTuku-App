@@ -3,7 +3,6 @@ import React from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { NavLink } from "react-router-dom";
-import { BiEditAlt } from "react-icons/bi";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { FiMinus, FiPlus } from "react-icons/fi";
 
@@ -40,7 +39,7 @@ const Cart = () => {
 
 	const CountCell = (cell: any) => {
 		return (
-			<div className="d-flex qt align-items-start justify-content-center">
+			<div className="d-flex qt align-items-center justify-content-between">
 				<button>
 					<FiMinus />
 				</button>

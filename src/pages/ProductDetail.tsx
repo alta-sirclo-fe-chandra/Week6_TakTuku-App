@@ -1,6 +1,7 @@
 import React from "react";
 
 import ProductPic from "../assets/images/product_pic.png";
+import { FiMinus, FiPlus } from "react-icons/fi";
 
 const ProductDetail = () => {
 	document.title = "TakTuku - Detail Product ";
@@ -42,8 +43,17 @@ const ProductDetail = () => {
 							<h4 className="product-name">Sofa Ternyaman</h4>
 							<p className="seller">By TutuMatang</p>
 							<h3 className="price mt-3 text-end">Rp 1.409.000</h3>
-							<div className="row quanti my-2">
+							<div className="d-flex justify-content-between quanti my-2">
 								<p className="stock">Stock 4</p>
+								<div className="d-flex qt align-items-center justify-content-center">
+									<button>
+										<FiMinus />
+									</button>
+									<div className="count">1</div>
+									<button>
+										<FiPlus />
+									</button>
+								</div>
 							</div>
 							<button className="btn btn-cart my-3 py-2">Add to Cart</button>
 							<button className="btn btn-co">Checkout</button>
