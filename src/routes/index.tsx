@@ -25,58 +25,56 @@ import Success from "../pages/checkout/success";
 import Checkout from "../pages/checkout";
 
 const Index = () => {
-  const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn);
+	const dispatch = useDispatch();
+	const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn);
 
-  useEffect(() => {
-    const tokenString = localStorage.getItem("token");
-    const userToken = JSON.parse(tokenString || "{}");
-    userToken.token
-      ? dispatch(reduxAction("isLoggedIn", true))
-      : dispatch(reduxAction("isLoggedIn", false));
-    axios.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${userToken.token}`;
-  });
+	useEffect(() => {
+		const tokenString = localStorage.getItem("token");
+		const userToken = JSON.parse(tokenString || "{}");
+		userToken.token
+			? dispatch(reduxAction("isLoggedIn", true))
+			: dispatch(reduxAction("isLoggedIn", false));
+		axios.defaults.headers.common["Authorization"] = `Bearer ${userToken.token}`;
+	});
 
-  return (
-    <BrowserRouter>
-      <ScrollToTop>
-        <Routes>
-          <Route path="/" element={<App />}>
-            <Route index element={<Home />} />
-            <Route path="product" element={<Navigate to="/" />} />
-            <Route path="product/:id" element={<ProductDetail />} />
-            <Route
-              path="account"
-              element={isLoggedIn ? <Account /> : <Navigate to="/" />}
-            >
-              <Route index element={<Navigate to="dashboard" />} />
-              <Route path="dashboard" element={<Dashboard />} />
-              <Route path="userid" element={<DetailAccount />} />
-              <Route path="transaction" element={<Transaction />} />
-              <Route path="transaction/:id" element={<Detail />} />
-              <Route path="address" element={<Address />} />
-              <Route path="product" element={<Product />} />
-              <Route path="product/create" element={<CreateProduct />} />
-              <Route path="product/update" element={<ProductUpdate />} />
-              <Route path="cart" element={<Cart />} />
-            </Route>
-            <Route path="checkout" element={<Checkout />} />
-          </Route>
-          <Route path="success" element={<Success />} />
-          <Route
-            path="/login"
-            element={isLoggedIn ? <Navigate to="/" /> : <Login />}
-          />
-          <Route
-            path="/register"
-            element={isLoggedIn ? <Navigate to="/" /> : <Register />}
-          />
-        </Routes>
-      </ScrollToTop>
-    </BrowserRouter>
-  );
+	return (
+		<BrowserRouter>
+			<ScrollToTop>
+				<Routes>
+					<Route path="/" element={<App />}>
+						<Route index element={<Home />} />
+						<Route path="product" element={<Navigate to="/" />} />
+						<Route path="product/:id" element={<ProductDetail />} />
+						<Route
+							path="account"
+							element={isLoggedIn ? <Account /> : <Navigate to="/" />}
+						>
+							<Route index element={<Navigate to="dashboard" />} />
+							<Route path="dashboard" element={<Dashboard />} />
+							<Route path=":id" element={<DetailAccount />} />
+							<Route path="transaction" element={<Transaction />} />
+							<Route path="transaction/:id" element={<Detail />} />
+							<Route path="address" element={<Address />} />
+							<Route path="product" element={<Product />} />
+							<Route path="product/create" element={<CreateProduct />} />
+							<Route path="product/update" element={<ProductUpdate />} />
+							<Route path="cart" element={<Cart />} />
+						</Route>
+						<Route path="checkout" element={<Checkout />} />
+					</Route>
+					<Route path="success" element={<Success />} />
+					<Route
+						path="/login"
+						element={isLoggedIn ? <Navigate to="/" /> : <Login />}
+					/>
+					<Route
+						path="/register"
+						element={isLoggedIn ? <Navigate to="/" /> : <Register />}
+					/>
+				</Routes>
+			</ScrollToTop>
+		</BrowserRouter>
+	);
 };
 
 export default Index;
