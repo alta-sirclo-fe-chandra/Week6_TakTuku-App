@@ -19,7 +19,8 @@ button.btn-save {
 }
 
 input.form-control,
-.form-select, textarea.form-control {
+.form-select,
+textarea.form-control {
 	font-family: "Poppins";
 	color: #bbbbbb;
 	background-color: #f3f3f3;
@@ -31,4 +32,10 @@ input.form-control,
 	font-family: Poppins;
 	font-size: 16px;
 	color: #0c0d36;
+}
+
+.total {
+	h5 {
+		color: #29a867 !important;
+	}
 }
