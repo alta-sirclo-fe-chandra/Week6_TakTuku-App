@@ -19,6 +19,7 @@ import Address from "../pages/account/address";
 import Product from "../pages/account/my_product";
 import ProductUpdate from "../pages/account/my_product/update";
 import CreateProduct from "../pages/account/my_product/create";
+import axios from "axios";
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,9 @@ const Index = () => {
     userToken.token
       ? dispatch(reduxAction("isLoggedIn", true))
       : dispatch(reduxAction("isLoggedIn", false));
+    axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${userToken.token}`;
   });
 
   return (
