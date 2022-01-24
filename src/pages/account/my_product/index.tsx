@@ -16,7 +16,7 @@ const Product = () => {
   const fetchData = async () => {
     setPending(true);
     await axios
-      .get("/products")
+      .get("/products/myproduct")
       .then((res) => {
         const { data } = res;
         setProducts(data);
