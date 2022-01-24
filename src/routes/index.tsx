@@ -14,6 +14,7 @@ import Product from "../pages/account/my_product";
 import ProductUpdate from "../pages/account/my_product/update";
 import CreateProduct from "../pages/account/my_product/create";
 import Checkout from "../pages/checkout";
+import Success from "../pages/checkout/success";
 
 const Index = () => {
 	return (
@@ -35,6 +36,7 @@ const Index = () => {
 						<Route path="product/update" element={<ProductUpdate />} />
 					</Route>
 				</Route>
+				<Route path="success" element={<Success />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 			</Routes>
