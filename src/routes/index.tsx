@@ -20,6 +20,9 @@ import Product from "../pages/account/my_product";
 import ProductUpdate from "../pages/account/my_product/update";
 import CreateProduct from "../pages/account/my_product/create";
 import axios from "axios";
+import Cart from "../pages/account/cart";
+import Success from "../pages/checkout/success";
+import Checkout from "../pages/checkout";
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -57,8 +60,11 @@ const Index = () => {
               <Route path="product" element={<Product />} />
               <Route path="product/create" element={<CreateProduct />} />
               <Route path="product/update" element={<ProductUpdate />} />
+              <Route path="cart" element={<Cart />} />
             </Route>
+            <Route path="checkout" element={<Checkout />} />
           </Route>
+          <Route path="success" element={<Success />} />
           <Route
             path="/login"
             element={isLoggedIn ? <Navigate to="/" /> : <Login />}
