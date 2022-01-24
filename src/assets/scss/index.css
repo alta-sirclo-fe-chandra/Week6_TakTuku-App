@@ -315,7 +315,7 @@ button.btn-save,
   background: #ffffff;
   border: 1px solid #29a867 !important;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 button.btn-save:hover,
@@ -373,15 +373,53 @@ textarea.form-control {
   font-weight: 500;
 }
 
+.qt {
+  max-width: 100%;
+  border: 0.5px solid #979797;
+  border-radius: 6px;
+}
+
+.qt button {
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0.3rem 1rem;
+}
+
+.qt .count {
+  padding: 0.3rem 0;
+}
+
+.shopping-cart p {
+  color: #979797;
+  font-size: 14px;
+}
+
+.shopping-cart h6.subprice {
+  color: #0c0d36;
+}
+
+.shopping-cart .total {
+  font-size: 18px;
+}
+
+.shopping-cart .total h5 {
+  font-weight: 500;
+  color: #29a867;
+}
+
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Poppins", sans-serif, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: "Poppins", source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: "Poppins", source-code-pro, Menlo, Monaco, Consolas,
+    "Courier New", monospace;
 }
 
 .avatar {
@@ -390,11 +428,11 @@ code {
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   vertical-align: middle;
   margin: 0;
   padding: 0;
