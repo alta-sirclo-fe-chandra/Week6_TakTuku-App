@@ -6,6 +6,7 @@ import { NavLink, useParams } from "react-router-dom";
 
 const Dashboard = () => {
 	const [user, setUser] = useState({
+		id: "",
 		name: "",
 		email: "",
 		address: "string",
@@ -97,7 +98,7 @@ const Dashboard = () => {
 						<NavLink
 							type="button"
 							className="btn btn-outline-success px-3 shadow"
-							to={`/account/${id}`}
+							to={`/account/${user.id}`}
 						>
 							Edit Profile
 						</NavLink>
@@ -116,8 +117,8 @@ const Dashboard = () => {
 						</p>
 						<NavLink
 							type="button"
-							className="btn btn-outline-success px-3 shadow"
-							to="/"
+							className="btn btn-outline-success px-3 shadow mt-2"
+							to={`/account/address/${user.id}`}
 						>
 							Edit Address
 						</NavLink>

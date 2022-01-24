@@ -67,7 +67,7 @@ const Index = () => {
 								<FaRegUser className="mb-1 me-2" /> Account Detail
 							</NavLink>
 							<NavLink
-								to="/account/address"
+								to="/account/address/"
 								className="list-group-item list-group-item-action"
 							>
 								<FaMapMarkerAlt className="mb-1 me-2" /> Address

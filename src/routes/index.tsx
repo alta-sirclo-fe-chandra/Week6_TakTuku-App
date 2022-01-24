@@ -54,7 +54,7 @@ const Index = () => {
 							<Route path=":id" element={<DetailAccount />} />
 							<Route path="transaction" element={<Transaction />} />
 							<Route path="transaction/:id" element={<Detail />} />
-							<Route path="address" element={<Address />} />
+							<Route path="address/:id" element={<Address />} />
 							<Route path="product" element={<Product />} />
 							<Route path="product/create" element={<CreateProduct />} />
 							<Route path="product/update" element={<ProductUpdate />} />
