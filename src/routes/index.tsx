@@ -13,6 +13,12 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import { reduxAction } from "../stores/actions/action";
 import { RootState } from "../stores/reducers/reducer";
+import ProductDetail from "../pages/product/detail";
+import DetailAccount from "../pages/account/detail";
+import Address from "../pages/account/address";
+import Product from "../pages/account/my_product";
+import ProductUpdate from "../pages/account/my_product/update";
+import CreateProduct from "../pages/account/my_product/create";
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -32,21 +38,27 @@ const Index = () => {
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<Home />} />
+            <Route path="product/:id" element={<ProductDetail />} />
             <Route path="account" element={<Account />}>
               <Route index element={<Navigate to="dashboard" />} />
               <Route path="dashboard" element={<Dashboard />} />
+              <Route path="userid" element={<DetailAccount />} />
               <Route path="transaction" element={<Transaction />} />
               <Route path="transaction/:id" element={<Detail />} />
+              <Route path="address" element={<Address />} />
+              <Route path="product" element={<Product />} />
+              <Route path="product/create" element={<CreateProduct />} />
+              <Route path="product/update" element={<ProductUpdate />} />
             </Route>
+            <Route
+              path="/login"
+              element={isLoggedIn ? <Navigate to="/" /> : <Login />}
+            />
+            <Route
+              path="/register"
+              element={isLoggedIn ? <Navigate to="/" /> : <Register />}
+            />
           </Route>
-          <Route
-            path="/login"
-            element={isLoggedIn ? <Navigate to="/" /> : <Login />}
-          />
-          <Route
-            path="/register"
-            element={isLoggedIn ? <Navigate to="/" /> : <Register />}
-          />
         </Routes>
       </ScrollToTop>
     </BrowserRouter>
