@@ -1,21 +1,10 @@
-
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
-
-
 # TakTuku E-commerce
 
 About TakTuku is an E-Commerce App created for the purpose of study.
 
 ## Demo
 
-Access our site at https:/Taktuku.com
-
-
-
-## Screenshots
-
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
+Access our site at https://Taktuku.com
 
 ## Features
 
@@ -26,31 +15,28 @@ Access our site at https:/Taktuku.com
 - Order Product
 - Shopping Cart
 
-
-
 ## Built With
 
 - React.js
-- Moment.js 
+- Moment.js
 - TypeScript
 - Bootstrap v5
 - React Bootstrap
-- React Bootstrap Datatables
+- React Datatables
 - React Icons
 - React Datepicker
-- React Redux 
-- SweetAlert2 
+- React Redux
+- Axios
+- SweetAlert2
 
-**Prototype:** Figma
-
-
+**Prototype:** [Figma](https://www.figma.com/file/apXlAAgloIs3ihTNragJEy/E-Commerce-TakTuku-Sirclo?node-id=0%3A1)
 
 ## 🚀 Getting Started
 
 Clone this repo
 
 ```bash
-  git https://github.com/alta-sirclo-fe-chandra/Week-6_TakTuku-App.git 
+  git https://github.com/alta-sirclo-fe-chandra/Week-6_TakTuku-App.git
 
 ```
 
@@ -66,14 +52,11 @@ Runs the app in the development mode.
 ```bash
   yarn start
 ```
+
 ## Credits
+
 List of contriubutors:
 
 👨‍💻 [Chandra Wijaya](https://github.com/atta89)
 
 👩‍💻 [Mutiara A'yun](https://github.com/mayun19)
-
-## 📝 License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
