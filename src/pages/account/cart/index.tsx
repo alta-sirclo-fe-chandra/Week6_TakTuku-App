@@ -23,7 +23,9 @@ const Cart = (props: any) => {
       .get("/carts")
       .then((res) => {
         const { data } = res;
-        setProducts(data);
+        if(data!=null){
+          setProducts(data);
+        }
       })
       .catch((err) => {
         console.log(err);
