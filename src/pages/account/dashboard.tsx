@@ -11,7 +11,10 @@ const Dashboard = () => {
 		email: "",
 		address: "string",
 		phone_number: "string",
+		birth_date: "string",
 	});
+
+	const [birth] = useState(new Date());
 
 	useEffect(() => {
 		fetchData();
@@ -109,19 +112,15 @@ const Dashboard = () => {
 						<h5 className="mb-0">Contact Detail</h5>
 						<br />
 						<p className="text-capitalize">
+							Birth Date <br /> {user.birth_date}
+						</p>
+						<p className="text-capitalize">
 							Address <br /> {user.address}
 						</p>
 						<p>
 							Phone Number <br />
 							{user.phone_number}
 						</p>
-						<NavLink
-							type="button"
-							className="btn btn-outline-success px-3 shadow mt-2"
-							to={`/account/address/${user.id}`}
-						>
-							Edit Address
-						</NavLink>
 					</div>
 				</div>
 			</div>
