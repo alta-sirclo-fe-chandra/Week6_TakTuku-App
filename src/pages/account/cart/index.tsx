@@ -5,11 +5,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Cart = () => {
+const Cart = (props: any) => {
   document.title = "TakTuku - Shopping Cart ";
   const [products, setProducts] = useState<object[]>([]);
   const [checkout, setCheckout] = useState<number[]>([]);
   const [total, setTotal] = useState(0);
+  const [pending, setPending] = useState(true);
   const Navigate = useNavigate();
 
   useEffect(() => {
@@ -17,6 +18,7 @@ const Cart = () => {
   }, []);
 
   const fetchData = async () => {
+    setPending(true);
     await axios
       .get("/carts")
       .then((res) => {
@@ -25,10 +27,12 @@ const Cart = () => {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setPending(false));
   };
 
   const handleDelete = async (item: number) => {
+    setPending(true);
     await axios
       .delete(`/carts/${item}`)
       .then((res) => {
@@ -56,18 +60,13 @@ const Cart = () => {
 
   const handleCheckout = () => {
     Navigate("/checkout");
+    const temp: object[] = [];
     products.map(async (item: any) => {
-      if (!checkout.includes(item.id)) {
-        await axios
-          .delete(`/carts/${item.id}`)
-          .then((res) => {
-            console.log(res);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+      if (checkout.includes(item.id)) {
+        temp.push(item);
       }
     });
+    props.checkout(checkout);
   };
 
   const ThousandSeparator = (amount: number) => {
@@ -101,16 +100,16 @@ const Cart = () => {
       name: "#ID",
     },
     {
-      //   selector: (row: any) => row.product.name,
+      selector: (row: any) => row.product.name,
       name: "PRODUCT",
     },
     {
-      //   selector: (row: any) => row.product.price,
+      selector: (row: any) => row.product.price,
       name: "PRICE",
       sortable: true,
-      //   format: (row: any) => (
-      // <p className="m-0">Rp. {ThousandSeparator(row.product.price)}</p>
-      //   ),
+      format: (row: any) => (
+        <p className="m-0">Rp. {ThousandSeparator(row.product.price)}</p>
+      ),
     },
     {
       selector: (row: any) => row.quantity,
@@ -145,7 +144,12 @@ const Cart = () => {
             <div className="p-4 d-flex align-items-center">
               <h5 className="flex-grow-1 m-0">Shopping Cart</h5>
             </div>
-            <DataTable data={products} columns={columns} pagination />
+            <DataTable
+              data={products}
+              columns={columns}
+              pagination
+              progressPending={pending}
+            />
           </div>
         </div>
       </div>

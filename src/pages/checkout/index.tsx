@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
-const Checkout = () => {
+const Checkout = (props: any) => {
   document.title = "TakTuku - Checkout Cart ";
   const [products, setProducts] = useState<object[]>([]);
   const [total, setTotal] = useState(0);
@@ -21,6 +21,7 @@ const Checkout = () => {
 
   useEffect(() => {
     fetchData();
+    console.log(props.checkout);
   }, []);
 
   const fetchData = async () => {
@@ -28,9 +29,15 @@ const Checkout = () => {
       .get("/carts")
       .then((res) => {
         const { data } = res;
-        setProducts(data);
+        const temp: any = [];
+        data.map((item: any) => {
+          if (props.checkout.includes(item.id)) {
+            temp.push(item);
+          }
+        });
+        setProducts(temp);
         setTotal(
-          data
+          temp
             .map((item: any) => item.sub_total)
             .reduce((prev: any, next: any) => prev + next)
         );
@@ -247,20 +254,30 @@ const Checkout = () => {
           <div className="col-lg-4 mt-3 mt-lg-0">
             <div className="card card-right px-2 py-4 p-lg-4">
               <h5 className="product-name mb-3">Order Summary</h5>
-              {products.map((item: any) => (
-                <div
-                  key={item.id}
-                  className="cart d-flex justify-content-between"
-                >
+              {products ? (
+                products.map((item: any) => (
+                  <div
+                    key={item.id}
+                    className="cart d-flex justify-content-between"
+                  >
+                    <div className="item-product">
+                      <h6 className="sub">{item.product.name}</h6>
+                    </div>
+                    <p>{item.quantity}</p>
+                    <h6 className="subprice">
+                      Rp {ThousandSeparator(item.sub_total)}
+                    </h6>
+                  </div>
+                ))
+              ) : (
+                <div className="cart d-flex justify-content-between">
                   <div className="item-product">
                     <h6 className="sub">Sofa Ternyaman</h6>
                   </div>
-                  <p>{item.quantity}</p>
-                  <h6 className="subprice">
-                    Rp {ThousandSeparator(item.sub_total)}
-                  </h6>
+                  <p>0</p>
+                  <h6 className="subprice">Rp 0</h6>
                 </div>
-              ))}
+              )}
               <div className="cart d-flex justify-content-between">
                 <p className="sub">Shipping Price</p>
                 <p className="subprice">Free</p>

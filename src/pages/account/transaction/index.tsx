@@ -6,12 +6,14 @@ import { NavLink } from "react-router-dom";
 
 const Transaction = () => {
   const [order, setOrder] = useState<object[]>([]);
+  const [pending, setPending] = useState(true);
 
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
+    setPending(true);
     await axios
       .get("/order")
       .then((res) => {
@@ -21,7 +23,8 @@ const Transaction = () => {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => setPending(false));
   };
 
   const ThousandSeparator = (amount: number) => {
@@ -79,7 +82,12 @@ const Transaction = () => {
             <div className="p-4">
               <h5 className="m-0">Transaction</h5>
             </div>
-            <DataTable data={order} columns={columns} pagination />
+            <DataTable
+              data={order}
+              columns={columns}
+              pagination
+              progressPending={pending}
+            />
           </div>
         </div>
       </div>

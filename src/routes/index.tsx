@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import App from "../App";
@@ -27,6 +27,10 @@ import Checkout from "../pages/checkout";
 const Index = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn);
+  const [checkout, setCheckout] = useState("");
+  const data = (data: any) => {
+    setCheckout(data);
+  };
 
   useEffect(() => {
     const tokenString = localStorage.getItem("token");
@@ -60,9 +64,9 @@ const Index = () => {
               <Route path="product" element={<Product />} />
               <Route path="product/create" element={<CreateProduct />} />
               <Route path="product/update" element={<ProductUpdate />} />
-              <Route path="cart" element={<Cart />} />
+              <Route path="cart" element={<Cart checkout={data} />} />
             </Route>
-            <Route path="checkout" element={<Checkout />} />
+            <Route path="checkout" element={<Checkout checkout={checkout} />} />
           </Route>
           <Route path="success" element={<Success />} />
           <Route
