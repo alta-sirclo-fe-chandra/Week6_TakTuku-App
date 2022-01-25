@@ -6,7 +6,7 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import ProductPic from "../../assets/images/product_pic.png";
 
-const ProductDetail = () => {
+const ProductDetail = (props: any) => {
   document.title = "TakTuku - Detail Product ";
   const [product, setProduct] = useState({
     id: 0,
@@ -70,7 +70,8 @@ const ProductDetail = () => {
   };
 
   const handleCheckout = () => {
-    Navigate("/checkout");
+    Navigate(`/checkout/${id}`);
+    props.quantity(quantity);
   };
 
   const thousandSeparator = (amount: number) => {

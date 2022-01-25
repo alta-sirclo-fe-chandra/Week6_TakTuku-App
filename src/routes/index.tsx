@@ -23,13 +23,18 @@ import axios from "axios";
 import Cart from "../pages/account/cart";
 import Success from "../pages/checkout/success";
 import Checkout from "../pages/checkout";
+import CheckoutProduct from "../pages/checkout/id";
 
 const Index = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state: RootState) => state.isLoggedIn);
   const [checkout, setCheckout] = useState("");
+  const [quantity, setQuantity] = useState("");
   const data = (data: any) => {
     setCheckout(data);
+  };
+  const dataQuantity = (data: any) => {
+    setQuantity(data);
   };
 
   useEffect(() => {
@@ -50,7 +55,10 @@ const Index = () => {
           <Route path="/" element={<App />}>
             <Route index element={<Home />} />
             <Route path="product" element={<Navigate to="/" />} />
-            <Route path="product/:id" element={<ProductDetail />} />
+            <Route
+              path="product/:id"
+              element={<ProductDetail quantity={dataQuantity} />}
+            />
             <Route
               path="account"
               element={isLoggedIn ? <Account /> : <Navigate to="/" />}
@@ -67,6 +75,10 @@ const Index = () => {
               <Route path="cart" element={<Cart checkout={data} />} />
             </Route>
             <Route path="checkout" element={<Checkout checkout={checkout} />} />
+            <Route
+              path="checkout/:id"
+              element={<CheckoutProduct quantity={quantity} />}
+            />
           </Route>
           <Route path="success" element={<Success />} />
           <Route
