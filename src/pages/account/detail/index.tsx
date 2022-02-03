@@ -67,8 +67,6 @@ const DetailAccount = () => {
   };
 
   const editUser = async (credential: credential) => {
-    console.log(credential);
-
     await axios
       .put(`/users/${id}`, credential)
       .then((res) => {

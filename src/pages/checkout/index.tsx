@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { TextInputAccount } from "../../components/TextInput";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -5,6 +6,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
 const Checkout = (props: any) => {
   document.title = "TakTuku - Checkout Cart ";
+  const [id, setId] = useState(0);
   const [products, setProducts] = useState<object[]>([]);
   const [total, setTotal] = useState(0);
   const [street, setStreet] = useState("");
@@ -21,7 +23,7 @@ const Checkout = (props: any) => {
 
   useEffect(() => {
     fetchData();
-    console.log(props.checkout);
+    fetchProfile();
   }, []);
 
   const fetchData = async () => {
@@ -47,6 +49,18 @@ const Checkout = (props: any) => {
       });
   };
 
+  const fetchProfile = async () => {
+    await axios
+      .get(`/users/myprofile`)
+      .then((res) => {
+        const { data } = res;
+        setId(data.id);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const handleType = (e: ChangeEvent<HTMLSelectElement>) => {
     setType(e.target.value);
   };
@@ -54,6 +68,7 @@ const Checkout = (props: any) => {
   const handleSubmit = async (e: FormEvent<HTMLElement>) => {
     e.preventDefault();
     await createOrder({
+      id_user: id,
       id_cart: products.map((item: any) => item.id),
       address: {
         street: street,

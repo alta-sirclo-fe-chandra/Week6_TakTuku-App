@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TextInputAccount } from "../../../components/TextInput";
 
@@ -9,16 +9,35 @@ type body = {
   quantity: number;
   description: string;
   id_category: number;
+  id_user: number;
+  photo: string;
 };
 
 const CreateProduct = () => {
   document.title = "TakTuku - Create My Product ";
+  const [id, setId] = useState(0);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [category, setCategory] = useState("");
   const [desc, setDesc] = useState("");
   const Navigate = useNavigate();
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    await axios
+      .get(`/users/myprofile`)
+      .then((res) => {
+        const { data } = res;
+        setId(data.id);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLElement>) => {
     e.preventDefault();
@@ -28,10 +47,14 @@ const CreateProduct = () => {
       quantity: Number(quantity),
       description: desc,
       id_category: Number(category),
+      id_user: id,
+      photo: "",
     });
   };
 
   const createProduct = async (body: body) => {
+    console.log(body);
+
     await axios
       .post("/products", body)
       .then((res) => {
